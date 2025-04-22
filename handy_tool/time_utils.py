@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# chat-robot.time_utils.
+# @Calendar: 2025-03-22 21:42
+# @Time: 21:42
+# @Author: mammon, kiramario
+import datetime, time
+
+def get_curtime_info():
+    current_time = datetime.datetime.now()
+    current_time_str = current_time.strftime('%Y-%m-%d %H:%M:%S')
+    current_time_real = int(time.mktime(time.strptime(current_time.strftime('%Y-%m-%d %H:%M:%S'), "%Y-%m-%d %H:%M:%S")))
+
+    return (current_time_str, current_time_real * 1000)
+
+def run():
+    pass
+
+
+if __name__ == "__main__":
+    start = datetime.datetime.now()
+    run()
+    exec_time = (datetime.datetime.now() - start).total_seconds()
+    print(f"run total spend: {exec_time:.3f}s\n")
