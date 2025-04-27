@@ -12,7 +12,9 @@ import asyncio
 from aiohttp import ClientError, ClientSession, hdrs
 from typing import Callable, Coroutine, Any, TypeVar, Union, Dict
 import json, time
+from os.path import expanduser
 
+chat_robot_env = expanduser('~/chat-robot.env')
 
 
 class FetchMethod:

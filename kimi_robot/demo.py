@@ -5,10 +5,16 @@
 # @Time: 23:03
 # @Author: mammon, kiramario
 
+import json
 from openai import OpenAI
 from os.path import expanduser
+from collections import defaultdict
 
 chat_robot_env = expanduser('~/chat-robot.env')
+
+credentials = defaultdict()
+with open(expanduser(chat_robot_env)) as f:
+    credentials = json.load(f)
 
 def run():
     client = OpenAI(

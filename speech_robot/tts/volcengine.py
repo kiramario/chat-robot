@@ -2,7 +2,7 @@
 
 import json, os, base64, requests
 from os.path import expanduser, expandvars
-from tts.schema import Volceengine_app,  Volceengine_audio, Volceengine_req_body, Volceengine_req_request, Volceengine_user
+from speech_robot.tts.schema import Volceengine_app,  Volceengine_audio, Volceengine_req_body, Volceengine_req_request, Volceengine_user
 from dotenv import load_dotenv
 
 def get_secrets():

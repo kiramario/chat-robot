@@ -14,6 +14,14 @@ from loguru import logger
 import aiohttp, json, asyncio
 from aiohttp import ClientError, ClientSession, hdrs
 from typing import Callable, Coroutine, Any, TypeVar, Union, Dict
+from os.path import expanduser
+from collections import defaultdict
+
+chat_robot_env = expanduser('~/chat-robot.env')
+
+credentials = defaultdict()
+with open(expanduser(chat_robot_env)) as f:
+    credentials = json.load(f)
 
 
 # 创建中间件
@@ -90,7 +98,7 @@ async def submit_prompt(request):
 @routes.post('/imagine')
 async def imagine(request):
     # user_token 会变化
-    USER_TOKEN = ""
+    USER_TOKEN = credentials["discord"]["USER_TOKEN"]
     PROXY_URL = "http://127.0.0.1:7897"
     HEADERS = {
         "Content-Type": "application/json",
@@ -121,7 +129,9 @@ async def imagine(request):
         ) as session:
             return await fetch(session, TRIGGER_URL, data=json.dumps(payload), proxy=PROXY_URL)
 
-    await image()
+    imgres = await image()
+    print(f"imgres = {imgres}")
+
     return web.Response(text=f"imagine finish")
 
 
